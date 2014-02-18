@@ -1,5 +1,12 @@
 require "trees/version"
 
 module Trees
-  # Your code goes here...
+
+  class Node
+    attr_accessor :value, :nodes
+    def initialize (value, nodes = [])
+      @value = Array(value)
+      @nodes = Array(nodes)
+    end
+  end
 end
