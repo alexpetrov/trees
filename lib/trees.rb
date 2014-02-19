@@ -3,7 +3,7 @@ require "trees/version"
 module Trees
 
   class Node
-    attr_accessor :value, :nodes
+    attr_reader :value, :nodes
     def initialize (value, nodes = [])
       @value = Array(value)
       @nodes = Array(nodes)
