@@ -3,19 +3,19 @@ require "trees/version"
 module Trees
 
   class Node
-    attr_reader :value, :nodes
-    def initialize (value, nodes = [])
+    attr_reader :value, :children
+    def initialize (value, children = [])
       @value = Array(value)
-      @nodes = Array(nodes)
+      @children = Array(children)
     end
 
-    def self.to_string(node, str = "")
+    def self.as_string(node, str = "")
       return str if node == nil
       str << '[' << node.value.join(' ')
-      str << ' ' unless node.nodes.empty?
+      str << ' ' unless node.children.empty?
 
-      node.nodes.each do |child|
-        str = to_string(child, str)
+      node.children.each do |child|
+        str = as_string(child, str)
       end
 
       str << "]"

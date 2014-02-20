@@ -15,19 +15,19 @@ module Trees
       assert_equal "[1]", node.value.to_s
     end
 
-    def test_nodes_are_arraified_in_constructor
+    def test_children_are_arraified_in_constructor
       node = Node.new(1, Node.new(2))
-      assert_equal "[2]", node.nodes[0].value.to_s
+      assert_equal "[2]", node.children[0].value.to_s
     end
 
-    def test_one_node_to_s
+    def test_one_node_as_a_string
       node = Node.new([1, 2])
-      assert_equal "[1 2]", Node::to_string(node)
+      assert_equal "[1 2]", Node::as_string(node)
     end
 
-    def test_two_nodes_to_s
+    def test_node_with_one_child_as_a_string
       node = Node.new([1, 2], Node.new([3]))
-      assert_equal "[1 2 [3]]", Node::to_string(node)
+      assert_equal "[1 2 [3]]", Node::as_string(node)
     end
 
   end
