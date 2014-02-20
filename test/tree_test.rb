@@ -30,5 +30,9 @@ module Trees
       assert_equal "[1 2 [3]]", Node::as_string(node)
     end
 
+    def test_sum_values
+      node = Node.new([1, 2], [Node.new([3,2], Node.new(7)), Node.new([1,2])])
+      assert_equal "[3 [5 [7]][3]]", Node::sum_values(node)
+    end
   end
 end

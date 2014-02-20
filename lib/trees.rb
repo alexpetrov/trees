@@ -11,14 +11,18 @@ module Trees
 
     def self.as_string(node, str = "", func = ->(x) {x.join(' ')})
       return str if node == nil
-      str << '[' << func.call(node.value)
+      str << '[' << String(func.call(node.value))
       str << ' ' unless node.children.empty?
 
       node.children.each do |child|
-        str = as_string(child, str)
+        str = as_string(child, str, func)
       end
 
       str << "]"
+    end
+
+    def self.sum_values(node)
+      as_string(node, "", ->(x){x.inject { |x,y| x+y}})
     end
   end
 end
