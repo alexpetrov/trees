@@ -22,7 +22,7 @@ module Trees
     end
 
     def self.sum_values(node)
-      as_string(node, "", ->(x){x.inject { |x,y| x+y}})
+      as_string(node, "", ->(x){x.inject { |a,b| a + b }})
     end
   end
 end
