@@ -24,5 +24,12 @@ module Trees
     def self.sum_values(node)
       as_string(node, "", ->(x){x.inject { |a,b| a + b }})
     end
+
+    def self.print_sum_in_nodes(node)
+      print = lambda do |y|
+        puts ->(x){x.inject { |a,b| a + b }}.call(y)
+      end
+      as_string(node, "", print)
+    end
   end
 end

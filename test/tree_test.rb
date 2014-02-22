@@ -34,5 +34,10 @@ module Trees
       node = Node.new([1, 2], [Node.new([3,2], Node.new(7)), Node.new([1,2])])
       assert_equal "[3 [5 [7]][3]]", Node::sum_values(node)
     end
+
+    def test_print_sum_values_in_all_nodes
+      node = Node.new([1, 2], [Node.new([3,2], Node.new(7)), Node.new([1,2])])
+      Node::print_sum_in_nodes(node)
+    end
   end
 end
