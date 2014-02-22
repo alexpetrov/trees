@@ -77,6 +77,12 @@ module Trees
       assert_equal '[1 [2][3 4]]', Trees::as_string(parser.parse)
     end
 
+    def test_throws_error_for_incorrect_input_data
+      parser = Parser.new(['[', '1', '[', '2', ']', '[','3', '4',']'])
+      assert_throws(:braces_disbalanced) do
+        parser.parse
+      end
+    end
 
   end
 

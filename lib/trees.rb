@@ -28,7 +28,8 @@ module Trees
       @depth = 0
       tree = Node.new()
       tree = parse_tree(tree)
-      return tree.children[0]
+      return tree.children[0] if @depth == 0
+      throw :braces_disbalanced
     end
 
     private
