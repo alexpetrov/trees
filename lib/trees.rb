@@ -4,13 +4,17 @@ module Trees
 
   class Node
     attr_reader :value, :children
-    def initialize (value, children = [])
+    def initialize (value = [], children = [])
       @value = Array(value)
       @children = Array(children)
     end
 
     def add_child(child)
       @children << child
+    end
+
+    def add_value(value)
+      @value << value
     end
   end
 
@@ -20,23 +24,43 @@ module Trees
     end
 
     def parse
-      @tree = nil
-      @tree = parse_tree(0)
-      @tree
+      @current_position = -1
+      @depth = 0
+      tree = Node.new()
+      tree = parse_tree(tree)
+      return tree.children[0]
     end
 
     private
 
-    def parse_tree(current_position)
-      values = []
+    def parse_tree(parent)
+      @current_position += 1
+      return parent if @current_position > @tree_array.length
+      @current = @tree_array[@current_position]
+      case @current
+      when '['
+        @depth += 1
+        child = Node.new()
+        parent.add_child(parse_tree(child))
+      when ']'
+        @depth -= 1
+        return parent
+      else
+        parent.add_value(@current)
+      end
+      parse_tree(parent)
+    end
+
+    def parse_tree_old(current_position)
+      node = Node.new
       @tree_array[current_position..-1].each_with_index do |current, index|
         case current
         when '['
-          parse_tree(index+1)
+          node.add_child(parse_tree(index+1))
         when ']'
-          return Node.new(values)
+          return node
         else
-          values << current
+          node.add_value(current)
         end
       end
     end

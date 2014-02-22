@@ -36,6 +36,12 @@ module Trees
       assert_equal '[1 [2]]', Trees::as_string(node)
     end
 
+    def test_add_value
+      node = Node.new(1)
+      node.add_value(2)
+      assert_equal '[1 2]', Trees::as_string(node)
+    end
+
     def test_sum_values
       node = Node.new([1, 2], [Node.new([3,2], Node.new(7)), Node.new([1,2])])
       assert_equal '[3 [5 [7]][3]]', Trees::sum_values(node)
@@ -56,14 +62,19 @@ module Trees
       assert_equal '[1]', Trees::as_string(parser.parse)
     end
 
-    def test_parse_two_nodes_tree
-      parser = Parser.new(['[', '1', '[', '2', ']', ']'])
-#      assert_equal '[1 [2]]', Trees::as_string(parser.parse)
-    end
-
     def test_parse_one_node_with_two_values
       parser = Parser.new(['[', '1', '2', ']'])
       assert_equal '[1 2]', Trees::as_string(parser.parse)
+    end
+
+    def test_parse_two_nodes_tree
+      parser = Parser.new(['[', '1', '[', '2', ']', ']'])
+      assert_equal '[1 [2]]', Trees::as_string(parser.parse)
+    end
+
+    def test_parse_three_nodes_tree
+      parser = Parser.new(['[', '1', '[', '2', ']', '[','3', '4',']', ']'])
+      assert_equal '[1 [2][3 4]]', Trees::as_string(parser.parse)
     end
 
 
