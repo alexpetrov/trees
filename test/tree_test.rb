@@ -22,24 +22,24 @@ module Trees
 
     def test_one_node_as_a_string
       node = Node.new([1, 2])
-      assert_equal '[1 2]', Trees::as_string(node)
+      assert_equal '[1 2]', node.to_string #Trees::as_string(node)
     end
 
     def test_node_with_one_child_as_a_string
       node = Node.new([1, 2], Node.new([3]))
-      assert_equal '[1 2 [3]]', Trees::as_string(node)
+      assert_equal '[1 2 [3]]', node.to_string
     end
 
     def test_add_child
       node = Node.new(1)
       node.add_child(Node.new(2))
-      assert_equal '[1 [2]]', Trees::as_string(node)
+      assert_equal '[1 [2]]', node.to_string
     end
 
     def test_add_value
       node = Node.new(1)
       node.add_value(2)
-      assert_equal '[1 2]', Trees::as_string(node)
+      assert_equal '[1 2]', node.to_string
     end
 
     def test_sum_values
@@ -54,27 +54,27 @@ module Trees
 
     def test_parse_trivial_tree
       parser = Parser.new(['[', ']'])
-      assert_equal '[]', Trees::as_string(parser.parse)
+      assert_equal '[]', parser.parse.to_string
     end
 
     def test_parse_one_node_tree
       parser = Parser.new(['[', '1',']'])
-      assert_equal '[1]', Trees::as_string(parser.parse)
+      assert_equal '[1]', parser.parse.to_string
     end
 
     def test_parse_one_node_with_two_values
       parser = Parser.new(['[', '1', '2', ']'])
-      assert_equal '[1 2]', Trees::as_string(parser.parse)
+      assert_equal '[1 2]', parser.parse.to_string
     end
 
     def test_parse_two_nodes_tree
       parser = Parser.new(['[', '1', '[', '2', ']', ']'])
-      assert_equal '[1 [2]]', Trees::as_string(parser.parse)
+      assert_equal '[1 [2]]', parser.parse.to_string
     end
 
     def test_parse_three_nodes_tree
       parser = Parser.new(['[', '1', '[', '2', ']', '[','3', '4',']', ']'])
-      assert_equal '[1 [2][3 4]]', Trees::as_string(parser.parse)
+      assert_equal '[1 [2][3 4]]', parser.parse.to_string
     end
 
     def test_throws_error_for_incorrect_input_data
