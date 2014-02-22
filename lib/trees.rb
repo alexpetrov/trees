@@ -21,20 +21,20 @@ module Trees
 
     def parse
       @tree = nil
-      parse_tree(0)
+      @tree = parse_tree(0)
       @tree
     end
 
     private
 
-    def parse_tree(current_position, children=[])
+    def parse_tree(current_position)
       values = []
       @tree_array[current_position..-1].each_with_index do |current, index|
         case current
         when '['
-          children << parse_tree(index+1, children)
+          parse_tree(index+1)
         when ']'
-          children << Node.new(values, children)
+          return Node.new(values)
         else
           values << current
         end

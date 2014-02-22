@@ -48,7 +48,7 @@ module Trees
 
     def test_parse_trivial_tree
       parser = Parser.new(['[', ']'])
-      assert_nil parser.parse
+      assert_equal '[]', Trees::as_string(parser.parse)
     end
 
     def test_parse_one_node_tree
@@ -59,13 +59,11 @@ module Trees
     def test_parse_two_nodes_tree
       parser = Parser.new(['[', '1', '[', '2', ']', ']'])
 #      assert_equal '[1 [2]]', Trees::as_string(parser.parse)
-
     end
 
     def test_parse_one_node_with_two_values
       parser = Parser.new(['[', '1', '2', ']'])
       assert_equal '[1 2]', Trees::as_string(parser.parse)
-
     end
 
 
