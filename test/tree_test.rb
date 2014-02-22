@@ -22,22 +22,22 @@ module Trees
 
     def test_one_node_as_a_string
       node = Node.new([1, 2])
-      assert_equal "[1 2]", Node::as_string(node)
+      assert_equal "[1 2]", Trees::as_string(node)
     end
 
     def test_node_with_one_child_as_a_string
       node = Node.new([1, 2], Node.new([3]))
-      assert_equal "[1 2 [3]]", Node::as_string(node)
+      assert_equal "[1 2 [3]]", Trees::as_string(node)
     end
 
     def test_sum_values
       node = Node.new([1, 2], [Node.new([3,2], Node.new(7)), Node.new([1,2])])
-      assert_equal "[3 [5 [7]][3]]", Node::sum_values(node)
+      assert_equal "[3 [5 [7]][3]]", Trees::sum_values(node)
     end
 
     def test_print_sum_values_in_all_nodes
       node = Node.new([1, 2], [Node.new([3,2], Node.new(7)), Node.new([1,2])])
-      Node::print_sum_in_nodes(node)
+      Trees::print_sum_in_nodes(node)
     end
   end
 end
