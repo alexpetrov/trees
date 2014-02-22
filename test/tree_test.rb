@@ -72,9 +72,9 @@ module Trees
       assert_equal '[1 [2]]', parser.parse.to_string
     end
 
-    def test_parse_three_nodes_tree
-      parser = Parser.new(['[', '1', '[', '2', ']', '[','3', '4',']', ']'])
-      assert_equal '[1 [2][3 4]]', parser.parse.to_string
+    def test_parse_some_pretty_complex_tree
+      parser = Parser.new(['[', '1', '[', '2', '[', '27', ']', ']', '5', '[','3', '4',']', ']'])
+      assert_equal '[1 5 [2 [27]][3 4]]', parser.parse.to_string
     end
 
     def test_throws_error_for_incorrect_input_data
