@@ -8,6 +8,10 @@ module Trees
       @value = Array(value)
       @children = Array(children)
     end
+
+    def add_child(child)
+      @children << child
+    end
   end
 
   class Parser
@@ -16,18 +20,26 @@ module Trees
     end
 
     def parse
-      result = nil
-      @tree_array.each do |current|
-        case current
-          when '['
-          when ']'
-          else
-            result = Node.new(current)
-        end
-      end
-      result
+      @tree = nil
+      parse_tree(0)
+      @tree
     end
 
+    private
+
+    def parse_tree(current_position, children=[])
+      values = []
+      @tree_array[current_position..-1].each_with_index do |current, index|
+        case current
+        when '['
+          children << parse_tree(index+1, children)
+        when ']'
+          children << Node.new(values, children)
+        else
+          values << current
+        end
+      end
+    end
   end
 
   def Trees.as_string(node, str = "", func = ->(x) {x.join(' ')})
