@@ -10,6 +10,26 @@ module Trees
     end
   end
 
+  class Parser
+    def initialize (tree_array)
+      @tree_array = tree_array
+    end
+
+    def parse
+      result = nil
+      @tree_array.each do |current|
+        case current
+          when '['
+          when ']'
+          else
+            result = Node.new(current)
+        end
+      end
+      result
+    end
+
+  end
+
   def Trees.as_string(node, str = "", func = ->(x) {x.join(' ')})
     return str if node == nil
     str << '[' << String(func.call(node.value))
