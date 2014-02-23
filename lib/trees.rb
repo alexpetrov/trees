@@ -66,7 +66,7 @@ module Trees
         @depth -= 1
         return parent
       else
-        parent.add_value(@current)
+        parent.add_value(Integer(@current)) unless @current == nil
       end
       parse_tree(parent)
     end

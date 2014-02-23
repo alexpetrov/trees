@@ -84,6 +84,10 @@ module Trees
       end
     end
 
+    def test_sum_values_for_parsed_tree
+      parser = Parser.new(['[', '1', '[', '2', '[', '27', ']', ']', '5', '[','3', '4',']', ']'])
+      assert_equal '[6 [2 [27]][7]]', Trees::sum_values(parser.parse)
+    end
   end
 
 end
