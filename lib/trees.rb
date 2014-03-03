@@ -21,7 +21,27 @@ module Trees
       as_string(self, str, func)
     end
 
+    def to_string_with_level()
+      str = ""
+      node_processor = lambda do |node, level|
+        str << '-' * level
+        str << node.value.reduce(:+).to_s
+        str << "\n"
+      end
+      infix(self, 0, node_processor)
+      str
+    end
+
     private
+
+    def infix(node, level = 0, func)
+      return if node == nil
+      func.call(node, level)
+      level += 1
+      node.children.each do |child|
+        infix(child, level, func)
+      end
+    end
 
     def as_string(node, str = "", func = ->(x) {x.join(' ')})
       return str if node == nil

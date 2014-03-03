@@ -14,3 +14,6 @@ puts Trees.sum_values(tree)
 
 puts "And here is exactly the required task. Print sum in each node:"
 Trees.print_sum_in_nodes(tree)
+
+puts "And now print sum in each node with level indentation:"
+puts tree.to_string_with_level
