@@ -70,20 +70,6 @@ module Trees
       end
       parse_tree(parent)
     end
-
-    def parse_tree_old(current_position)
-      node = Node.new
-      @tree_array[current_position..-1].each_with_index do |current, index|
-        case current
-        when '['
-          node.add_child(parse_tree(index+1))
-        when ']'
-          return node
-        else
-          node.add_value(current)
-        end
-      end
-    end
   end
 
   def Trees.sum_values(node)
