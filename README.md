@@ -15,8 +15,10 @@ To run tests:
 ```
 
 It was made in one of my favorite languages - Ruby.
+
 I practice TDD. If you are interested in the example of TDD aproach, please check out commits.
-I proudly use Emacs (Prelude) as IDE.
+
+I proudly use Emacs-Prelude as IDE.
 
 I applied some Confident Ruby (By Avdi Grimm) patterns:
 
