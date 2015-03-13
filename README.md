@@ -3,15 +3,26 @@
 This is the test exercise for Clojure Course (clojurecource.by) by Alex Ott, Dmitry Bushenko and Nikita Prokopov.
 
 To see demo of exercise in action run:
-    demo.rb
 
-It was made in my current favorite language Ruby with TDD in Emacs (Prelude).
+``` bash
+./demo.sh
+```
+
+To run tests:
+
+``` bash
+./test.sh
+```
+
+It was made in one of my favorite languages - Ruby.
+I practice TDD. If you are interested in the example of TDD aproach, please check out commits.
+I proudly use Emacs (Prelude) as IDE.
 
 I applied some Confident Ruby (By Avdi Grimm) patterns:
 
-    Receive policies instead of data
-    Use build in conversion functions
-    Use Array() conversion to array-ify inputs
+- Receive policies instead of data
+- Use build in conversion functions
+- Use Array() conversion to array-ify inputs
 
 ## Installation
 

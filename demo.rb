@@ -15,8 +15,8 @@ puts Trees.sum_values(tree)
 puts "And here is exactly the required task. Print sum in each node:"
 Trees.print_sum_in_nodes(tree)
 
-puts "And now print sum in each node with level indentation:"
+puts "And now print sum in each node with level indentation in prefix traversal:"
 puts tree.to_string_with_level
 
-puts "And now print sum in each node with level in postfix traversal:"
+puts "And now print elements in each node with level in postfix traversal:"
 puts tree.to_string_with_level_postfix
