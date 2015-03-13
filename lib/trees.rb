@@ -28,20 +28,42 @@ module Trees
         str << node.value.reduce(:+).to_s
         str << "\n"
       end
-      infix(self, 0, node_processor)
+      prefix_traversal(self, 0, node_processor)
       str
     end
 
-    private
+    def to_string_with_level_postfix()
+      str = ""
+      node_processor = lambda do |node, level|
+        str << '[' << level.to_s << ":"
+        str << node.value.join(' ')
+        str << ']'
+      end
+      postfix_traversal(self, 0, node_processor)
+      str
+    end
 
-    def infix(node, level = 0, func)
+
+    def prefix_traversal(node, level = 0, func)
       return if node == nil
       func.call(node, level)
       level += 1
       node.children.each do |child|
-        infix(child, level, func)
+        prefix_traversal(child, level, func)
       end
     end
+
+    def postfix_traversal(node, level = 0, func)
+      return if node == nil
+      level += 1
+      node.children.reverse_each do |child|
+        postfix_traversal(child, level, func)
+      end
+
+      func.call(node, level)
+    end
+
+    private
 
     def as_string(node, str = "", func = ->(x) {x.join(' ')})
       return str if node == nil

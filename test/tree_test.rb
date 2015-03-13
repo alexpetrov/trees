@@ -3,7 +3,7 @@ require_relative 'test_helper'
 
 module Trees
 
-  class TreesTest < Test::Unit::TestCase
+  class TreesTest < Minitest::Test
 
     def test_node_class
       node = Node.new([1])
@@ -22,7 +22,7 @@ module Trees
 
     def test_one_node_as_a_string
       node = Node.new([1, 2])
-      assert_equal '[1 2]', node.to_string #Trees::as_string(node)
+      assert_equal '[1 2]', node.to_string
     end
 
     def test_node_with_one_child_as_a_string
@@ -75,6 +75,17 @@ module Trees
     def test_parse_some_pretty_complex_tree
       parser = Parser.new(['[', '1', '[', '2', '[', '27', ']', ']', '5', '[','3', '4',']', ']'])
       assert_equal '[1 5 [2 [27]][3 4]]', parser.parse.to_string
+    end
+
+    def test_to_string_with_level_prefix_traversal
+      parser = Parser.new(['[', '1', '[', '2', '[', '27', ']', ']', '5', '[','3', '4',']', ']'])
+
+      assert_equal "6\n-2\n--27\n-7\n", parser.parse.to_string_with_level
+    end
+
+    def test_to_string_with_level_postfix_traversal
+      parser = Parser.new(['[', '1', '[', '2', '[', '27', ']', ']', '5', '[','3', '4',']', ']'])
+      assert_equal "[2:3 4][3:27][2:2][1:1 5]", parser.parse.to_string_with_level_postfix
     end
 
     def test_throws_error_for_incorrect_input_data
