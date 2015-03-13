@@ -42,15 +42,19 @@ Or install it yourself as:
 
 Use Trees::Parser with parse method to parse tree represented by array like this:
 
+``` ruby
 treeArray = ['[', '1', '[', '2', '3', ']', '4 ','[', '5', '[', '6', '7', ']', ']', '[', '8',']',']']
 
 parser = Trees::Parser.new(treeArray)
 
 tree = parser.parse
+```
 
 Use method to_string of Node type to represent tree as a string.
 You can give a function for to_string method to make some operations on values in every node in the tree.
 
-    node.to_string("", ->(x){x.inject { |a,b| a + b }})
+``` ruby
+node.to_string("", ->(x){x.inject { |a,b| a + b }})
+```
 
 Copyright (c) 2014 Alexander Petrov (a.k.a Lysenko by passport)
